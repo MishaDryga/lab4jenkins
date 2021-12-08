@@ -9,11 +9,13 @@ namespace Lab2
 {
     public class Lab2
     {
+        private static string filePath = Directory.GetCurrentDirectory() + @"\TextFile1.txt";
+        
         public static void Main(string[] args)
         {
             
             bool Swither = true;
-            while (Swither == true)
+            while (Swither)
             {
                 Console.WriteLine("\nChoose the operation :\n 1-Reading \n 2-Search \n 3-Delete \n 4-Add \n 5-Save \n 0-Finish \n");
                 char option = Console.ReadKey().KeyChar;
@@ -24,7 +26,7 @@ namespace Lab2
                     case '1':
                         {
                             Console.WriteLine("\nReading\n");
-                            Reading(@"C:\Users\Mkarlos\source\repos\Lab2\TextFile1.txt");
+                            Reading(filePath);
                             break;
                         }
 
@@ -37,7 +39,7 @@ namespace Lab2
                     case '3':
                         {
                             Console.WriteLine("\nDelete\n");
-                            Delete();
+                            Delete(filePath);
                             break;
                         }
                     case '4':
@@ -51,7 +53,7 @@ namespace Lab2
                     case '5':
                         {
                             Console.WriteLine("\nSave\n");
-                            Save();
+                            Save(filePath);
                             break;
                         }
                     case '0':
@@ -75,17 +77,22 @@ namespace Lab2
 
         public static void Reading(string path)
         {
-            string text = File.ReadAllText(path);
-            string[] str = text.Replace("\r\n", " ").Split();
-            for (int i = 0; i < str.Length; ++i)
+            if (File.Exists(path))
             {
-                stack.Push(str[i] + " ");
+                string text = File.ReadAllText(path);
+                string[] str = text.Replace("\r\n", " ").Split();
+                for (int i = 0; i < str.Length; ++i)
+                {
+                    stack.Push(str[i] + " ");
+                }
+                Console.WriteLine("====Original file===");
+                foreach (var item in stack)
+                    Console.Write(item);
             }
-            Console.WriteLine("====Original file===");
-            foreach (var item in stack)
-                Console.Write(item);
-
-            
+            else
+            {
+                Console.WriteLine("File not exists. Please create a new file before reads it");
+            }
         }
 
 
@@ -93,42 +100,39 @@ namespace Lab2
         {
             Console.WriteLine("Enter some numb: ");
             string a = Console.ReadLine();
-            if (stack.Contains(a+" "))
+            
+            if (stack.Contains(a + " "))
             {
                 Console.WriteLine("Element is found...!!");
             }
-
             else
             {
                 Console.WriteLine("Element is not found...!!");
             }
-            return;
         }
 
-        public static void Delete()
+        public static void Delete(string path)
         {
            stack.Clear();
-           Console.WriteLine("\nTotal elements present in " + 
-               "stack: {0}\n", stack.Count);
+           Console.WriteLine("\nTotal elements present in stack: {0}\n", stack.Count);
             foreach (string s in stack)
                 Console.Write(s);
-            File.WriteAllText(@"C:\Users\Mkarlos\source\repos\Lab2\TextFile1.txt", "");
+            File.WriteAllText(path, "");
         }
 
-        public static void Save()
+        public static void Save(string path)
         {
             Console.WriteLine("\n\n===Write to file===");
             string txt = string.Join(" ", stack);
-            File.WriteAllText(@"C:\Users\Mkarlos\source\repos\Lab2\TextFile1.txt", txt);
+            File.WriteAllText(path, txt);
         }
 
-        public static void Add(string new_numb)
+        public static void Add(string newNumber)
         {
-            stack.Push(new_numb + " ");
+            stack.Push(newNumber + " ");
             Console.WriteLine("====Original file===");
             foreach (var item in stack)
                 Console.Write(item + " ");
-
         }
     }
 }

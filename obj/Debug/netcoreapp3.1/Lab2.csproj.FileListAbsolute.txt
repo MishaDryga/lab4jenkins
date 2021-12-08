@@ -11,3 +11,5 @@ C:\Users\Mkarlos\source\repos\Lab2\obj\Debug\netcoreapp3.1\Lab2.csproj.CoreCompi
 C:\Users\Mkarlos\source\repos\Lab2\obj\Debug\netcoreapp3.1\Lab2.dll
 C:\Users\Mkarlos\source\repos\Lab2\obj\Debug\netcoreapp3.1\Lab2.pdb
 C:\Users\Mkarlos\source\repos\Lab2\obj\Debug\netcoreapp3.1\Lab2.genruntimeconfig.cache
+C:\Users\Developer\Downloads\Lab2\Lab2\obj\Debug\netcoreapp3.1\Lab2.dll
+C:\Users\Developer\Downloads\Lab2\Lab2\obj\Debug\netcoreapp3.1\Lab2.pdb
